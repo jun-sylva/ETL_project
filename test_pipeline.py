@@ -28,5 +28,5 @@ def test_blank_values():
 def test_boolean_values():
     df = extract(path)
     df = transform(df)
-    column_bool = df['adult']
+    column_bool = df['budget']
     assert all(isinstance(x, bool) for x in column_bool), "The column contains non-boolean values"
