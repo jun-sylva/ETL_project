@@ -26,7 +26,7 @@ def transform(df):
     df["budget"] = df["budget"].astype('Int64')
 
     """
-    Modeling column 'genres' ({'id': 16, 'name': 'Animation'}, {'id': 35, 'name': 'Comedy'})
+    transform column 'genres' ({'id': 16, 'name': 'Animation'}, {'id': 35, 'name': 'Comedy'})
     to ['Animation', 'Comedy']
     """
     df['genres'] = df['genres'].astype(str)
@@ -34,7 +34,7 @@ def transform(df):
     df = df.copy()
 
     """
-    Modeling column 'production_companies' ({'name': 'Pixar Animation Studios', 'id': 3}, 
+    transform column 'production_companies' ({'name': 'Pixar Animation Studios', 'id': 3}, 
     {'name': 'Warner Bros.', 'id': 6194})
     to ['Pixar Animation Studios', 'Warner Bros.']
     """
@@ -43,7 +43,7 @@ def transform(df):
     df = df.copy()
 
     """
-    Modeling column 'production_countries' ({'iso_3166_1': 'US', 'name': 'United States of America'}, 
+    transform column 'production_countries' ({'iso_3166_1': 'US', 'name': 'United States of America'}, 
     {'iso_3166_1': 'DE', 'name': 'Germany'})
     to ['Pixar Animation Studios', 'Warner Bros.']
     """
@@ -52,7 +52,7 @@ def transform(df):
     df = df.copy()
 
     """
-    Modeling column 'production_countries' ({'iso_639_1': 'en', 'name': 'English'}, 
+    transform column 'production_countries' ({'iso_639_1': 'en', 'name': 'English'}, 
     {'iso_639_1': 'fr', 'name': 'Français'})
     to ['English', 'Français']
     """
@@ -60,13 +60,13 @@ def transform(df):
     df['spoken_languages'] = df['spoken_languages'].apply(lambda x: re.findall(r"'name': '([^']+)'", x))
     df = df.copy()
 
-    # Modeling column 'popularity' (convert to float and delete incorrect value)
+    # transform column 'popularity' (convert to float and delete incorrect value)
     df["popularity"] = pd.to_numeric(df["popularity"], errors='coerce')
     df = df[df["popularity"].notnull() & df["popularity"].astype(float).apply(lambda x: isinstance(x, float))]
     df["popularity"] = df["popularity"].round(2)
     df = df.copy()
 
-    # Modeling column 'release_date' (convert to datetime and delete incorrect value)
+    # transform column 'release_date' (convert to datetime and delete incorrect value)
     df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce')
     df = df[df['release_date'].notnull()]
     df['release_date'] = df['release_date'].dt.year

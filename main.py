@@ -6,7 +6,8 @@ logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
 
 date_time = datetime.now().strftime("%Y-%m-%d_%H-%M")
 file_name = f"Films_{date_time}.xlsx"
-path_extract = "D:/data engineer/export/" + file_name
+#path_extract = "D:/data engineer/export/" + file_name
+path_extract = "./export/" + file_name
 path = "https://raw.githubusercontent.com/jun-sylva/data/main/movies.csv"
 try:
     df = extract(path)
